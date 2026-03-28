@@ -1,0 +1,390 @@
+01.
+class Node {
+    int empNumber;
+    String name;
+    Node leftChild;
+    Node rightChild;
+
+    public Node(int empNumber, String name) {
+        this.empNumber = empNumber;
+        this.name = name;
+        this.leftChild = null;
+        this.rightChild = null;
+    }
+}
+
+
+
+02.
+public void displayNode() {
+    System.out.println("Employee Number: " + String.format("%03d", empNumber)
+            + ", Name: " + name);
+}
+
+
+Node with DisplayNode()
+
+class Node {
+    int empNumber;
+    String name;
+    Node leftChild;
+    Node rightChild;
+
+    public Node(int empNumber, String name) {
+        this.empNumber = empNumber;
+        this.name = name;
+        this.leftChild = null;
+        this.rightChild = null;
+    }
+
+    public void displayNode() {
+        System.out.println("Employee Number: " + String.format("%03d", empNumber)
+                + ", Name: " + name);
+    }
+}
+
+
+03.
+class Tree {
+    private Node root;
+
+    public Tree() {
+        root = null;
+    }
+
+    public Node find(int emp) {
+        Node current = root;
+
+        while (current != null) {
+            if (current.empNumber == emp) {
+                return current;
+            } else if (emp < current.empNumber) {
+                current = current.leftChild;
+            } else {
+                current = current.rightChild;
+            }
+        }
+
+        return null;
+    }
+
+    public void insert(int emp, String name) {
+        Node newNode = new Node(emp, name);
+
+        if (root == null) {
+            root = newNode;
+            return;
+        }
+
+        Node current = root;
+        Node parent;
+
+        while (true) {
+            parent = current;
+
+            if (emp < current.empNumber) {
+                current = current.leftChild;
+
+                if (current == null) {
+                    parent.leftChild = newNode;
+                    return;
+                }
+            } else {
+                current = current.rightChild;
+
+                if (current == null) {
+                    parent.rightChild = newNode;
+                    return;
+                }
+            }
+        }
+    }
+
+    public void inOrder() {
+        if (root == null) {
+            System.out.println("Tree is empty.");
+            return;
+        }
+        inOrder(root);
+    }
+
+    private void inOrder(Node localRoot) {
+        if (localRoot != null) {
+            inOrder(localRoot.leftChild);
+            localRoot.displayNode();
+            inOrder(localRoot.rightChild);
+        }
+    }
+
+    public void preOrder() {
+        if (root == null) {
+            System.out.println("Tree is empty.");
+            return;
+        }
+        preOrder(root);
+    }
+
+    private void preOrder(Node localRoot) {
+        if (localRoot != null) {
+            localRoot.displayNode();
+            preOrder(localRoot.leftChild);
+            preOrder(localRoot.rightChild);
+        }
+    }
+
+    public void postOrder() {
+        if (root == null) {
+            System.out.println("Tree is empty.");
+            return;
+        }
+        postOrder(root);
+    }
+
+    private void postOrder(Node localRoot) {
+        if (localRoot != null) {
+            postOrder(localRoot.leftChild);
+            postOrder(localRoot.rightChild);
+            localRoot.displayNode();
+        }
+    }
+}
+
+
+04.
+public Node findRecursive(int emp) {
+    return findRecursive(root, emp);
+}
+
+private Node findRecursive(Node localRoot, int emp) {
+    if (localRoot == null || localRoot.empNumber == emp) {
+        return localRoot;
+    }
+
+    if (emp < localRoot.empNumber) {
+        return findRecursive(localRoot.leftChild, emp);
+    } else {
+        return findRecursive(localRoot.rightChild, emp);
+    }
+}
+
+
+05.
+public void deleteAll() {
+    root = deleteAll(root);
+}
+
+private Node deleteAll(Node localRoot) {
+    if (localRoot == null) {
+        return null;
+    }
+
+    localRoot.leftChild = deleteAll(localRoot.leftChild);
+    localRoot.rightChild = deleteAll(localRoot.rightChild);
+
+    return null;
+}
+
+06.
+import java.util.Scanner;
+
+class Node {
+    int empNumber;
+    String name;
+    Node leftChild;
+    Node rightChild;
+
+    public Node(int empNumber, String name) {
+        this.empNumber = empNumber;
+        this.name = name;
+        this.leftChild = null;
+        this.rightChild = null;
+    }
+
+    public void displayNode() {
+        System.out.println("Employee Number: " + String.format("%03d", empNumber)
+                + ", Name: " + name);
+    }
+}
+
+class Tree {
+    private Node root;
+
+    public Tree() {
+        root = null;
+    }
+
+    public Node find(int emp) {
+        Node current = root;
+
+        while (current != null) {
+            if (current.empNumber == emp) {
+                return current;
+            } else if (emp < current.empNumber) {
+                current = current.leftChild;
+            } else {
+                current = current.rightChild;
+            }
+        }
+
+        return null;
+    }
+
+    public void insert(int emp, String name) {
+        Node newNode = new Node(emp, name);
+
+        if (root == null) {
+            root = newNode;
+            return;
+        }
+
+        Node current = root;
+        Node parent;
+
+        while (true) {
+            parent = current;
+
+            if (emp < current.empNumber) {
+                current = current.leftChild;
+
+                if (current == null) {
+                    parent.leftChild = newNode;
+                    return;
+                }
+            } else {
+                current = current.rightChild;
+
+                if (current == null) {
+                    parent.rightChild = newNode;
+                    return;
+                }
+            }
+        }
+    }
+
+    public void inOrder() {
+        if (root == null) {
+            System.out.println("Tree is empty.");
+            return;
+        }
+        inOrder(root);
+    }
+
+    private void inOrder(Node localRoot) {
+        if (localRoot != null) {
+            inOrder(localRoot.leftChild);
+            localRoot.displayNode();
+            inOrder(localRoot.rightChild);
+        }
+    }
+
+    public void preOrder() {
+        if (root == null) {
+            System.out.println("Tree is empty.");
+            return;
+        }
+        preOrder(root);
+    }
+
+    private void preOrder(Node localRoot) {
+        if (localRoot != null) {
+            localRoot.displayNode();
+            preOrder(localRoot.leftChild);
+            preOrder(localRoot.rightChild);
+        }
+    }
+
+    public void postOrder() {
+        if (root == null) {
+            System.out.println("Tree is empty.");
+            return;
+        }
+        postOrder(root);
+    }
+
+    private void postOrder(Node localRoot) {
+        if (localRoot != null) {
+            postOrder(localRoot.leftChild);
+            postOrder(localRoot.rightChild);
+            localRoot.displayNode();
+        }
+    }
+
+    public Node findRecursive(int emp) {
+        return findRecursive(root, emp);
+    }
+
+    private Node findRecursive(Node localRoot, int emp) {
+        if (localRoot == null || localRoot.empNumber == emp) {
+            return localRoot;
+        }
+
+        if (emp < localRoot.empNumber) {
+            return findRecursive(localRoot.leftChild, emp);
+        } else {
+            return findRecursive(localRoot.rightChild, emp);
+        }
+    }
+
+    public void deleteAll() {
+        root = deleteAll(root);
+    }
+
+    private Node deleteAll(Node localRoot) {
+        if (localRoot == null) {
+            return null;
+        }
+
+        localRoot.leftChild = deleteAll(localRoot.leftChild);
+        localRoot.rightChild = deleteAll(localRoot.rightChild);
+
+        return null;
+    }
+}
+
+public class TreeDemo {
+    public static void main(String[] args) {
+        Scanner input = new Scanner(System.in);
+        Tree tree = new Tree();
+
+        // Create tree with 10 employee records from the sheet
+        tree.insert(149, "Anusha");
+        tree.insert(167, "Kosala");
+        tree.insert(47, "Dinusha");
+        tree.insert(66, "Mihiri");
+        tree.insert(159, "Jayani");
+        tree.insert(118, "Nimal");
+        tree.insert(195, "Nishantha");
+        tree.insert(34, "Avodya");
+        tree.insert(105, "Bimali");
+        tree.insert(133, "Sampath");
+
+        System.out.println("Inorder Traversal:");
+        tree.inOrder();
+
+        System.out.println("\nPreorder Traversal:");
+        tree.preOrder();
+
+        System.out.println("\nPostorder Traversal:");
+        tree.postOrder();
+
+        System.out.print("\nEnter employee number to search: ");
+        int emp = input.nextInt();
+
+        Node found = tree.findRecursive(emp);
+
+        if (found != null) {
+            System.out.println("Employee found:");
+            found.displayNode();
+        } else {
+            System.out.println("Employee not found.");
+        }
+
+        System.out.println("\nDeleting all nodes from the tree...");
+        tree.deleteAll();
+
+        System.out.println("Tree after deleting all nodes:");
+        tree.inOrder();
+
+        input.close();
+    }
+}
